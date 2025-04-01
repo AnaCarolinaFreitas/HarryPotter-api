@@ -36,6 +36,14 @@ const updateWizard = async (id, name, house_id) => {
     return result.rows[0];
 };
 
+const deleteWizard = async (id) => {
+    const result = await pool.query(
+        "DELETE FROM wizards WHERE id = $1 RETURNING *",
+        [id]
+    );
+    return result.rows[0];
+};
 
 
-module.exports = { getWizards, getWizardById, createWizard, updateWizard };
+
+module.exports = { getWizards, getWizardById, createWizard, updateWizard, deleteWizard };

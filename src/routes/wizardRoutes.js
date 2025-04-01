@@ -6,5 +6,6 @@ router.get("/", wizardController.getAllWizards);
 router.get("/:id", wizardController.getWizard);
 router.post("/", wizardController.createWizard);
 router.put("/:id", wizardController.updateWizard);
+router.delete("/:id", wizardController.deleteWizard)
 
 module.exports = router;

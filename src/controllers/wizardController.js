@@ -44,4 +44,13 @@ const updateWizard = async (req, res) => {
     }
 };
 
-module.exports = { getAllWizards, getWizard, createWizard, updateWizard };
+const deleteWizard = async (req, res) => {
+    try {
+        const message = await wizardModel.deleteWizard(req.params.id);
+        res.json(message);
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao deletar bruxo." });
+    }
+};
+
+module.exports = { getAllWizards, getWizard, createWizard, updateWizard, deleteWizard };
