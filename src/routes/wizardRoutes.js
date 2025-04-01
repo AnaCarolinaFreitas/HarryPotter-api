@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const wizardController = require("../controllers/wizardController");
+const wizardController = require("../controllers/wizardController.js");
 
 router.get("/", wizardController.getAllWizards);
 router.get("/:id", wizardController.getWizard);
 router.post("/", wizardController.createWizard);
+router.put("/:id", wizardController.updateWizard);
 
 module.exports = router;

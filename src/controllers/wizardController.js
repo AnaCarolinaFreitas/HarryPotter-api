@@ -1,4 +1,4 @@
-const wizardModel = require("../models/wizardModel");
+const wizardModel = require("../models/wizardModel.js");
 
 const getAllWizards = async (req, res) => {
     try {
@@ -31,4 +31,17 @@ const createWizard = async (req, res) => {
     }
 };
 
-module.exports = { getAllWizards, getWizard, createWizard };
+const updateWizard = async (req, res) => {
+    try {
+        const { name, house_id } = req.body;
+        const updatedWizard = await wizardModel.updateWizard(req.params.id, name, house_id);
+        if (!updatedWizard) {
+            return res.status(404).json({ message: "Bruxo não encontrado." });
+        }
+        res.json(updatedWizard);
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao atualizar bruxo." });
+    }
+};
+
+module.exports = { getAllWizards, getWizard, createWizard, updateWizard };
