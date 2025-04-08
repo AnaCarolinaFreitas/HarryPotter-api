@@ -1,13 +1,28 @@
 const pool = require("../config/database.js");
 
-const getWizards = async () => {
-    const result = await pool.query(
-        `SELECT wizards.*, houses.name AS house_name 
-         FROM wizards 
-         LEFT JOIN houses ON wizards.house_id = houses.id`
-    );
-    return result.rows;
+const getWizards = async (name) => {
+    //Sem nome
+    if (!name) {
+        // Se não houver nome, retorna todos os bruxos
+        const result = await pool.query(
+            `SELECT wizards.*, houses.name AS house_name 
+            FROM wizards 
+            LEFT JOIN houses ON wizards.house_id = houses.id`
+        );
+        return result.rows;
+    } else {
+        // Se tiver, faça o filtro.
+        const result = await pool.query(
+            `SELECT wizards.*, houses.name AS house_name 
+                FROM wizards 
+                LEFT JOIN houses ON wizards.house_id = houses.id
+                WHERE wizards.name ILIKE $1`, [`%${name}%`]
+        );
+        return result.rows;
+    }
 };
+
+
 
 const getWizardById = async (id) => {
     const result = await pool.query(
