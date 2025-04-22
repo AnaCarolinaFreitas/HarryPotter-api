@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const wizardController = require("../controllers/wizardController.js");
 const upload = require("../config/upload.js"); // crie a pasta middleware e o arquivo upload.js
+const apiKeyMiddleware = require("../config/apiKey");
+router.use(apiKeyMiddleware);
 /**
  * @swagger
  * tags:

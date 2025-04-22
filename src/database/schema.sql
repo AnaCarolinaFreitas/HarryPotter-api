@@ -46,3 +46,5 @@ INSERT INTO wizards (name, house_id) VALUES
     ('Blaise Zabini', 2),
     ('Anthony Goldstein', 3),
     ('Justin Finch-Fletchley', 4);
+
+ALTER TABLE wizards ADD COLUMN photo TEXT;
